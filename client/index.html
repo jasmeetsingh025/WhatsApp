@@ -7,6 +7,7 @@
     <title>Chatter-Up</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="http://localhost:8000/socket.io/socket.io.js" defer></script>
     <script src="client.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,16 +16,20 @@
     <div class="container">
         <div class="row">
             <section class="chat chat-wrapper col-md-9 chat-container mt-3 mt-md-0">
+
+                <!-- Header section holds the user name and shows if they are typing... -->
                 <header class="chat-header">
                     <div class="c-h-title d-flex align-items-center justify-content-center">
                         <div id="greenOnlineDot" class="mx-1"></div>
-                        <span id="userNameSpan" style="color:rgb(152, 251, 152)">Jasmeet Singh</span>
-                        <div id="typing" class="mx-3">...typing</div>
+                        <span id="userNameSpan" style="color:rgb(62, 186, 62)"></span>
+                        <div id="typing" class="mx-3"></div>
                     </div>
                 </header>
+
+                <!-- Main section contains the messages. -->
                 <main class="chat-box">
                     <!-- Left side message -->
-                    <div class="msg left-msg">
+                    <!-- <div class="msg left-msg">
                         <div class="msg-img" style="background-image: url('../images/deadpool.jpg')"></div>
 
                         <div class="msg-bubble">
@@ -35,10 +40,10 @@
 
                             <div class="msg-text">I'm fine you tell</div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Right side message -->
-                    <div class="msg right-msg">
+                    <!-- <div class="msg right-msg">
                         <div class="msg-img" style="background-image: url('../images/goku.jpg')"></div>
 
                         <div class="msg-bubble">
@@ -49,57 +54,19 @@
 
                             <div class="msg-text">You did the home work ?</div>
                         </div>
-                    </div>
-                    <!-- Left side message -->
-                    <div class="msg left-msg">
-                        <div class="msg-img" style="background-image: url('../images/deadpool.jpg')"></div>
-
-                        <div class="msg-bubble">
-                            <div class="msg-info">
-                                <div class="msg-info-name">Jasmeet Singh</div>
-                                <div class="msg-info-time">04:40</div>
-                            </div>
-
-                            <div class="msg-text">I'm fine you tell</div>
-                        </div>
-                    </div>
-                    <!-- Right side message -->
-                    <div class="msg right-msg">
-                        <div class="msg-img" style="background-image: url('../images/goku.jpg')"></div>
-
-                        <div class="msg-bubble">
-                            <div class="msg-info">
-                                <div class="msg-info-name">Taran</div>
-                                <div class="msg-info-time">04:45</div>
-                            </div>
-
-                            <div class="msg-text">You did the home work ?</div>
-                        </div>
-                    </div>
-
-                    <!-- Right side message -->
-                    <div class="msg right-msg">
-                        <div class="msg-img" style="background-image: url('../images/goku.jpg')"></div>
-
-                        <div class="msg-bubble">
-                            <div class="msg-info">
-                                <div class="msg-info-name">Taran</div>
-                                <div class="msg-info-time">04:45</div>
-                            </div>
-
-                            <div class="msg-text">You did the home work ?</div>
-                        </div>
-                    </div>
+                    </div> -->
                 </main>
-                <form action="" class="chat-I-area">
+                <form action="#" type="submit" class="chat-I-area" id="chat-I-area">
                     <input type="text" class="chat-input" id="chat-input" placeholder="Type a message" />
                     <button type="submit" class="chat-send-btn">Send</button>
                 </form>
             </section>
+
+            <!-- Chat area section holds the number of users connected and there names... -->
             <div class="col mt-3">
-                <div class="listUsers">
-                    <div id="showCountOfConnectedUsers" class="listUsers">1</div>
-                    <div id="connected_users" class="listUsers">Jasmeet Singh</div>
+                <div class="list-group">
+                    <div id="showCountOfConnectedUsers" class="list-group"></div>
+                    <div id="connected_users" class="list-group"></div>
                 </div>
             </div>
         </div>
